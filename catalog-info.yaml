@@ -1,0 +1,22 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: DSSP-TargetP-test-01
+  annotations:
+    backstage.io/techdocs-ref: dir:.
+    backstage.io/kubernetes-id: DSSP-TargetP-test-01
+    sonarqube.org/project-key: dssp-targetp-test-01
+    github.com/project-slug: BackstageSSPPoC/DSSP-TargetP-test-01
+    argocd/app-name: dssp-targetp-test-01-dev
+    prometheus.io/rule: "kube_pod_status_phase{pod=~'dssp-targetp-test-01.*'}|phase,kube_pod_container_status_restarts_total{pod=~'dssp-targetp-test-01.*'}|container"
+    prometheus.io/alert: "KubePodCrashLooping,KubeDeploymentReplicasMismatch,KubePodNotReady,KubeContainerWaiting,KubeContainerOOMKilled,KubeDeploymentRolloutStuck"
+    prometheus.io/labels: "namespace=dev"
+    grafana/overview-dashboard: 'http://34.29.242.32/grafana/d/ffuuiuytw0f0gb/backstage-view?var-pod_prefix=dssp-targetp-test-01&var-namespace=dev&kiosk' 
+  tags:
+    - python
+    - scaffolded
+spec:
+  type: service
+  lifecycle: Dev
+  owner: user:default/chaitanya-shekhar-pandey
+  system: dssp-platform
